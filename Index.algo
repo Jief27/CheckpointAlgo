@@ -1,25 +1,32 @@
-ALGORITHM phrase
+
+ALGORITHM checkpointAlgo
 VAR
-    compte : INTEGER := 0;
-    compte_chaine : INTEGER := 0;
-    chaine : STRING;
-    total_chaine : STRING := chaine.length;
+	phrase : STRING;        //la phrase renseignée par l'user
+	nc : STRING;            //nombre de caractère de la phrase
+	nmot : INTEGER;         //nombre de mot
+	nvoy : INTEGER;         //nombre de voyelle
+	i : INTEGER;
 BEGIN
-    Write("Entrer une phrase");
-    Read(chaine);
-    
-    FOR i FROM 0 TO chaine.length - 1 DO
-        IF (chaine = "a" OR chaine = "o" OR chaine = "u" OR chaine = "i" OR 
-            chaine = "y" OR chaine= "e") THEN
-            compte := compte + 1;
-        END_IF
+	                        //INITIALISATION DES DONNES
+	Writeln ("Veuillez entrer une phrase svp!");
+	writeln ("NB: une phrase se termine toujour par un point !");
+	Read (phrase);
+	nc := phrase.length;
+	nmot := 1;
+	nvoy := 0;
 
-        IF (chaine = " ") THEN
-            compte_chaine = compte_chaine + 1;
-        END_IF
-    END_FOR
+                            //DEBUT DU TRAITEMENT DE L'ALGORITHME
+	FOR i FROM 0 TO nc - 1 DO
+        	IF (phrase[i] = " ") THEN
+            	nmot = nmot + 1;
+        	END_IF;
+      	IF (phrase[i] = "a" OR phrase[i] = "e" OR phrase[i] = "i" OR phrase[i] = "i" OR phrase[i] = "o" OR phrase[i] = "y") THEN
+            	nvoy := nvoy + 1;
+        	END_IF;
+    	END_FOR;
 
-    Write("Nombte Total de chaine : " + total_chaine);
-    Write("Nombre total de voyelle : " + compte);
-    Write("Nombre total d'espace : " + compte_chaine);
-END
+	                        //AFFICHAGE DU RESULTAT OBTENU
+	Writeln ("Cette phrase compte: " + nc + " caractères, ");
+	Write (nmot + " mots, ");
+	Write ("et " + nvoy + " voyelles.");
+END.
